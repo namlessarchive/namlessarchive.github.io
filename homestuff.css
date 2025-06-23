@@ -60,7 +60,7 @@
   }
 }
 
-.button {
+.lbutton {
   position: relative;
   cursor: pointer;
   margin: 0 15px;
@@ -79,7 +79,7 @@
   max-height: 50px;
 }
 
-button::before {
+.lbutton::before {
   content: "";
   position: absolute;
   isolation: isolate;
@@ -113,7 +113,7 @@ button::before {
   }
 }
 
-button::after {
+.lbutton::after {
   content: "";
   position: absolute;
   width: calc(100% - 15px);
@@ -127,7 +127,7 @@ button::after {
   animation: flicker 5s ease infinite;
 }
 
-button:hover {
+.lbutton:hover {
   border: 1px solid rgb(255, 125, 242);
   text-shadow: 0 0 2px rgb(255 255 255 / 0.8);
   box-shadow: 0 0 5px 1px rgba(255, 161, 246, 0.5);
@@ -135,22 +135,22 @@ button:hover {
   color:white;
 }
 
-button:hover::before {
+.lbutton:hover::before {
   width: calc(100% + 30px);
   height: calc(100% + 15px);
 }
 
-button:active:before {
+.lbutton:active:before {
   width: calc(100% + 40px);
   height: calc(100% + 45px);
 }
 
-button:hover::after {
+.lbutton:hover::after {
   width: calc(100% + 15px);
   height: calc(100% + 30px);
 }
 
-button:active:after {
+.lbutton:active:after {
   width: calc(100% + 60px);
   height: calc(100% + 25px);
 }
@@ -167,7 +167,7 @@ button:active:after {
   transition: all 0.5s ease;
 }
 
-button:active .balken {
+.lbutton:active .balken {
   background-color: rgb(251, 188, 116);
   box-shadow: 0 0 8px 2px rgba(255, 230, 139, 0.4);
 }
@@ -180,20 +180,20 @@ button:active .balken {
   top: 37px;
 }
 
-button:hover .balken {
+.lbutton:hover .balken {
   opacity: 1;
   transform: translateY(0);
 }
 
-button:hover .balken-1 {
+.lbutton:hover .balken-1 {
   height: 18px;
 }
 
-button:hover .balken-2 {
+.lbutton:hover .balken-2 {
   height: 10px;
 }
 
-button:hover .balken-3 {
+.lbutton:hover .balken-3 {
   height: 5px;
 }
 
@@ -355,3 +355,70 @@ button:hover .balken-3 {
     background-position: -200% 50%;
   }
 }
+
+/* From Uiverse.io by pandey_saurav_ */ 
+.rpg-button {
+  --button-color: #4a0e0e;
+  --button-hover-color: #631212;
+  --text-color: #ffd700;
+  --border-color: #8b4513;
+  --shadow-color: rgba(139, 69, 19, 0.5);
+
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  font-size: 1.25em;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-color);
+  background-color: var(--button-color);
+  border: 0.15em solid var(--border-color);
+  border-radius: 0.5em;
+  padding: 0.75em 1.5em;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 0.2em 0.4em var(--shadow-color);
+}
+
+.rpg-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 215, 0, 0.4),
+    transparent
+  );
+  transition: all 0.4s;
+}
+
+.rpg-button:hover {
+  background-color: var(--button-hover-color);
+  transform: translateY(-0.15em);
+  box-shadow: 0 0.4em 0.6em var(--shadow-color);
+}
+
+.rpg-button:hover::before {
+  left: 100%;
+}
+
+.rpg-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.2em rgba(255, 215, 0, 0.5);
+}
+
+.rpg-button:active {
+  transform: translateY(0.05em);
+  box-shadow: 0 0.1em 0.2em var(--shadow-color);
+}
+
+.rpg-button__text {
+  position: relative;
+  z-index: 1;
+}
+
