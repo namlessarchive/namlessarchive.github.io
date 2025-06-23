@@ -17,3 +17,6 @@
 - edited all files outside folders
 - edited classic home.html
 - added humblewood
+
+1.2.1 *
+- edited humblewood folder
