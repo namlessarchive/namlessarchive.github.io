@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<base target="_top">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>MAP IFRA</title>
+	
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+	<style>
+		html, body {
+			height: 100%;
+			margin: 0;
+			background-color:#000000;
+		}
+		.leaflet-container {
+			height: 400px;
+			width: 600px;
+			max-width: 100%;
+			max-height: 100%;
+		}
+		.m {
+			text-align: center;
+			width: 200px;
+		}
+	</style>
+
+	
+</head>
+<body>
+
+
+
+<center><div id="map" style="width: 1280px; height: 700px;"></div></center>
+<script>
+var map = L.map('map', {
+    crs: L.CRS.Simple,
+	minZoom: -1,
+	maxZoom: 3,
+	continuousWorld: false,
+	maxBoundsViscosity: 1.0
+}).setView([800, 1350], -1);
+//Boundry Stuff
+var mapSW = [0,0], mapNE = [2000,3000];
+	map.setMaxBounds(new L.LatLngBounds(mapSW, mapNE));	
+var bounds = [[0,0], [2000,3000]];
+var image = L.imageOverlay('images/MAPbg.jpg', bounds).addTo(map);
+//ICON SETTING
+	var city = L.icon({
+		iconUrl:       'icons/city.png',
+		iconRetinaUrl: 'icons/city.png',
+		iconSize:    [15, 15],
+		iconAnchor:  [15, 15],
+		popupAnchor: [-6.5, -10],
+		tooltipAnchor: [0, 0],
+	});
+	var cityBarbarian = L.icon({
+		iconUrl:       'icons/cityBarbarian.png',
+		iconRetinaUrl: 'icons/cityBarbarian.png',
+		shadowUrl:     'icons/shadow.png',
+		iconSize:    [25, 41],
+		iconAnchor:  [12, 41],
+		popupAnchor: [1, -34],
+		tooltipAnchor: [16, -28],
+		shadowSize:  [41, 41]
+	}); 
+ 	var cityCapital = L.icon({
+		iconUrl:       'icons/cityCapital.png',
+		iconRetinaUrl: 'icons/cityCapital.png',
+		shadowUrl:     'icons/shadow.png',
+		iconSize:    [25, 41],
+		iconAnchor:  [12, 41],
+		popupAnchor: [1, -34],
+		tooltipAnchor: [16, -28],
+		shadowSize:  [41, 41]
+	});
+	var cityPort = L.icon({
+		iconUrl:       'icons/cityPort.png',
+		iconRetinaUrl: 'icons/cityPort.png',
+		shadowUrl:     'icons/shadow.png',
+		iconSize:    [25, 41],
+		iconAnchor:  [12, 41],
+		popupAnchor: [1, -34],
+		tooltipAnchor: [16, -28],
+		shadowSize:  [41, 41]
+	});
+	var mageTower = L.icon({
+		iconUrl:       'icons/mageTower.png',
+		iconRetinaUrl: 'icons/mageTower.png',
+		shadowUrl:     'icons/shadow.png',
+		iconSize:    [25, 41],
+		iconAnchor:  [12, 41],
+		popupAnchor: [1, -34],
+		tooltipAnchor: [16, -28],
+		shadowSize:  [41, 41]
+	});
+	var townMill = L.icon({
+		iconUrl:       'icons/townMill.png',
+		iconRetinaUrl: 'icons/townMill.png',
+		shadowUrl:     'icons/shadow.png',
+		iconSize:    [25, 41],
+		iconAnchor:  [12, 41],
+		popupAnchor: [1, -34],
+		tooltipAnchor: [16, -28],
+		shadowSize:  [41, 41]
+	});  
+
+
+// CORD FINDER
+var marker = L.marker([1000, 1000],  {
+  draggable: true,
+  }).addTo(map);
+  marker.bindPopup('LatLng Marker').openPopup();
+  marker.on('dragend', function(e) {
+   marker.getPopup().setContent(marker.getLatLng().toString()).openOn(map);
+    });
+//ICON PLACING
+	var alderheart = L.marker([1488, 1362], {icon: city}).bindPopup('<p class="m"><b>Baldurs Gate</b></br> Founded by druids, it stands tall as the heart of Humblewood. All bird and humblefolk can be found in the city. <a href="alder.html">Lore</a></p>').addTo(map);
+	
+	
+//(1234, 1394)
+</script>
+
+</body>
+</html>
