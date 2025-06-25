@@ -1,0 +1,40 @@
+<style>
+  .notepadTextArea {
+    display: block;
+    width: 100%;
+    height: calc(100% - 27px);
+    padding: 0;
+    margin: 0;
+    margin-top: 1px;
+    font-family: MS Gothic, MSGothic, monospace;
+    font-size: 12pt;
+    outline: none !important;
+    border: none;
+    background-color: #F7F7F7;
+  }
+  .notepadToolbar {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 25px;
+    border-bottom: solid 1px #333;
+    font-family: MS Gothic, MSGothic, monospace;
+    font-size: 10pt;
+  }
+  .toolbarOpt {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100% - 11px);
+    padding: 5px;
+    margin: 1px;
+    cursor: default;
+    user-select: none;
+  }
+  .toolbarOpt:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+</style>
+<div class="notepadToolbar"><span class="toolbarOpt">File</span><span class="toolbarOpt">Edit</span><span class="toolbarOpt">View</span><span class="toolbarOpt">Format</span></div>
+<textarea class="notepadTextArea"></textarea>

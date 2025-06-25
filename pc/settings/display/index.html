@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://xobyte.org/scripts/theme-wizard.js"></script>
+		<link href="../style.css" rel="stylesheet" type="text/css">
+		<style>
+			#settingsContentRight {
+				display: block;
+			}
+			#theme-switcher {
+				font-family: inherit;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div class="settingsAppContent">
+  <div id="settingsNav">
+  <div class="controlPanelToolbar"><span class="controlPanelToolbarOpt"><u>F</u>ile</span><span class="controlPanelToolbarOpt"><u>E</u>dit</span><span class="controlPanelToolbarOpt"><u>V</u>iew</span><span class="controlPanelToolbarOpt"><u>F</u>ormat</span></div>
+  <div class="controlPanelLocationToolbar">
+    <div id="controlPanelBack" class="cPtoolbarBtn"><img src="../../resources/arrow.png" alt="<" class="cPNavIco controlPanelBack" /><small class="navButtonDesc">Back</small><img src="../../resources/arrow.png" alt=">" id="controlPanelForward" class="cPNavIco controlPanelForward" /></div>
+    <div><input type="url" placeholder="Enter a URL" id="controlPanelUrlBar" class="controlPanelUrlBar" /></div>
+    <div id="controlPanelGo" class="cPtoolbarBtn controlPanelGo"><img src="../../resources/enter.png" alt="GO" class="cPNavIco" /></div>
+    <div id="controlPanelFavorites" class="cPtoolbarBtn controlPanelFavorites"><img src="" alt="<" class="cPNavIco" /></div>
+    <div id="controlPanelMenu" class="cPtoolbarBtn controlPanelMenu"><img src="" alt="<" class="cPNavIco" /></div>
+  </div>
+  </div>
+  <div id="settingsContent">
+    <div id="settingsContentLeft">
+      <div id="cPIntro">
+        <div id="cPIntroTitle"><img src="../../resources/settings.png" id="cPIntroTitleIcon" /><span>Control Panel</span></div>
+        <div id="cPIntroDesc">Welcome to the Winbows Control Panel! Here, you can adjust different settings and customize your Winbows experience.</div>
+      </div>
+      <br />
+      <br />
+      <div id="cPIntro2">
+        <div id="cPIntroTitle2"><span>See Also</span></div>
+        <div id="cPIntroDesc2">i haven't gotten this far yet...</div>
+      </div>
+    </div>
+    <div id="settingsContentRight">
+		<p><label for="ts">Theme:<select id="theme-switcher" name="ts"></select></label></p>
+		<p><label for="brightness">Brightness: <input type="range" min="5" max="100" value="100" id="brightnessAdjuster" name="brightness" /></label></p>
+		<p><label for="toggleDebugger">Toggle Debugger: <input type="checkbox" id="toggleDebug" name="toggleDebugger" /></label></p>
+		<p><label for="toggleScanlines">Toggle Scanlines: <input type="checkbox" id="toggleScanlines" name="toggleScanlines" /></label></p>
+
+    </div>
+  </div>
+</div>
+	</body>
+	<script>
+		let brightnessAdjuster = document.getElementById("brightnessAdjuster");
+		let toggleDebugger = document.getElementById("toggleDebug");
+		let toggleScanlines = document.getElementById("toggleScanlines");
+		var library = {
+			"Windows XP" : "/style.css",
+		};
+		window.themes.initialize(library);
+		if(localStorage.brightness){
+			brightnessAdjuster.value = localStorage.brightness * 100;
+		}
+		if(localStorage.scanlines){
+			toggleScanlines.checked = eval(localStorage.scanlines);
+		}
+		brightnessAdjuster.onchange = function(){
+			let b = (100 - this.value) * 0.01;
+			window.parent.postMessage({
+				type: "action",
+				action: "adjustDisplay",
+				adjustments: {
+					brightness : b
+				}
+			});
+			localStorage.brightness = b;
+		};
+		toggleScanlines.onchange = function(){
+			window.parent.postMessage({
+				type: "action",
+				action: "toggleScanlines",
+				value: this.checked
+			});
+			localStorage.scanlines = this.checked;
+		}
+		toggleDebugger.onchange = function(){
+			window.parent.postMessage({
+				type: "action",
+				action: "toggleDebugger",
+			});
+		};
+
+	</script>
+</html>

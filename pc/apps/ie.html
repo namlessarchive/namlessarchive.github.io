@@ -1,0 +1,107 @@
+<style>
+  #browserWrap {
+    display: block;
+    border: none;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
+  #browserToolbar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: calc(100% - 10px);
+    height: 15px;
+    padding: 10px;
+  }
+  #browserToolbar > div {
+    display: inline-block;
+  }
+  .toolbarBtn {
+    height: 16pt;
+    width: 16pt;
+    margin: 3px;
+  }
+  .toolbarBtn:hover {
+    cursor: pointer;
+    filter: contrast(150%);
+  }
+  #browserUrlBar {
+    width: 50%;
+  }
+  #browserGo {
+    background-image: url("../resources/enter.png");
+    background-size: 100% 100%;
+  }
+  #browserBack {
+    background-image: url("../resources/arrow.png");
+    background-size: 100% 100%;
+    transform: rotate(180deg);
+  }
+  #browserForward {
+    background-image: url("../resources/arrow.png");
+    background-size: 100% 100%;
+  }
+  #browserWindow {
+    display: block;
+    border: none;
+    width: 100%;
+    height: calc(100% - 25px);
+    margin: 0;
+  }
+</style>
+<div id="browserWrap">
+  <div id="browserToolbar">
+    <div id="browserBack" class="toolbarBtn"></div>
+    <div id="browserForward" class="toolbarBtn"></div>
+    <input type="url" placeholder="Enter a URL" id="browserUrlBar" />
+    <div id="browserGo" class="toolbarBtn"></div>
+    <div id="browserFavorites" class="toolbarBtn"></div>
+    <div id="browserMenu" class="toolbarBtn"></div>
+  </div>
+  <iframe src="https://kidwiththechemicalz.net" id="browserWindow"></iframe>
+</div>
+<script>
+  var browserWindow = document.getElementById("browserWindow");
+  var browserBack = document.getElementById("browserBack");
+  var browserForward = document.getElementById("browserForward");
+  var browserUrlBar = document.getElementById("browserUrlBar");
+  var browserFavorites = document.getElementById("browserFavorites");
+  var browserGo = document.getElementById("browserGo");
+  var browserMenu = document.getElementById("browserMenu");
+  var browserHistory = [];
+  browserWindow.onload = function(){
+    browserUrlBar.value = this.src;
+    browserHistory.push(this.src);
+  };
+  window.openUrlInBrowser = function(url, env){
+    console.log(url)
+    document.querySelector(`#${env.id} #browserUrlBar`).value = url;
+    document.querySelector(`#${env.id} #browserWindow`).src = url;
+  }
+  function openUrlInBrowser(url){
+    browserWindow.src = url;
+  }
+  browserUrlBar.onkeydown = function(event){
+    if(event.which == 13){
+      openUrlInBrowser(this.value);
+    }
+  };
+  browserGo.onclick = function(){
+    openUrlInBrowser(browserUrlBar.value);
+  };
+  browserBack.onclick = function(){
+    try {
+      browserWindow.contentWindow.history.go(-1);
+    } catch(crossDomain) {
+      
+    }
+  };
+  browserForward.onclick = function(){
+    try {
+      browserWindow.contentWindow.history.go(1);
+    } catch(crossDomain) {
+      
+    }
+  };
+</script>

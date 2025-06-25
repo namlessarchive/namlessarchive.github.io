@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading...</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      .scanlines:after {
+        content: " ";
+        display: block;
+        height: 100vh;
+        width: 100vw;
+        position: fixed;
+        left: 0;
+        top: 0;
+        background: linear-gradient(#AAA 50%, transparent 50%);
+        background-size: 100% 2px;
+        background-repeat: repeat;
+        opacity: 0.25;
+        z-index: 9999999999999999;
+        pointer-events: none;
+      }
+      #wrap {
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        top: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #000;
+        color: #FFF;
+      }
+      #center {
+        text-align: center;
+      }
+      #logo {
+        display: block;
+        height: 30vh;
+        width: 30vh;
+      }
+      .bar {
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+        width: 10px;
+        height: 15px;
+        background: linear-gradient(#0055EA, #3888E9, #3888E9, #0055EA);
+        margin-left: 1px;
+        margin-right: 1px;
+        border-radius: 2px;
+      }
+      marquee {
+        display: block;
+        width: 25vh;
+        height: 15px;
+        padding: 2px;
+        border: solid 1px #AAA;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body class="scanlines">
+    <div id="wrap">
+      <div id="center">
+        <img src="../resources/logo-alt.png" id="logo" />
+        <marquee direction="right" scrollamount="15"><span class="bar"></span><span class="bar"></span><span class="bar"></span></marquee>
+      </div>
+    </div>
+  </body>
+  <script>
+    setTimeout(function(){
+      window.open("/", "_self");
+    }, 5000);
+  </script>
+</html>
