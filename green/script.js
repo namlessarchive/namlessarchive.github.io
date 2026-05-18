@@ -61,7 +61,7 @@ function execute(command, output, asciiText)
 
     capsMode = true
 
-    return "INPROPER TERMINAL USE DETECTED.\nUSE term.fix TO RESTORE ACCESS."
+    return "INPROPER TERMINAL USE DETECTED.\nUSE term.fix TO RESTORE ACCESS.\nLOCKDOWN ENABLED"
   }
 
   if (cmd === 'files') {
@@ -98,6 +98,16 @@ function execute(command, output, asciiText)
         return "AGENT, PLEASE REPORT THIS E-CODE TO YOUR SUPERVISOR OR CONTACT: 0106T."
       case 'sign.n':
         return "IGNORE ALL PREVIOUS MENTIONS."
+
+      case 'door':
+        return "Are you sure you want to enter? DOOR.Y/DOOR.N"
+
+      case 'door.n':
+        return "A wise choice."
+
+      case 'door.y':
+        window.open('door', '_blank')  
+        return "The door is open."
 
       default:
         return "COMMAND ACCESS DENIED"
@@ -150,11 +160,21 @@ if (filesMode) {
     case 'king':
       return"This command can only be used in LOCKDOWN mode."
 
+    case 'hint':
+      return"A portal, often made of wood."
+
+    case 'door':
+      return"ERROR: This command can only be used in LOCKDOWN MODE."
+
     case 'info.john':
       return"AGENT:JOHN DOE\nAge: XX, Role: Agent, Cover: FBI\n\nThis is a test bio for selected agent."
+
+    case 'lockdown':
+      return"Not that simple. What happens when you [modify] your keys?"
     
-      case 'help':
-      return "help - show commands\nclear - clear screen\ntest - system test\nonboard - open onboarding\nintro - plays current intro sequence\ninfo.<agent> - displays dossier for inputed agent.\nEX: info.john\nfiles - enables archive mode, use to nagivate."
+    case 'help':
+      return "help - show commands\nclear - clear screen\ntest - system test\nonboard - open onboarding\nintro - plays current intro sequence\ninfo.<agent> - displays dossier for inputed agent.\nEX: info.john\nfiles - enables archive mode, use to nagivate.\nhint - ???"
+
 
     default:
       return "Unknown command"
