@@ -1,0 +1,42 @@
+<html><head>
+<link rel="shortcut icon" tyep+"x-icon" href="../dg.png">
+<title>THE PLACE</title>
+<style>
+body {
+    background-image: url('bg.jpg');
+    background-position: center center;
+}
+div {
+    justify-content: center;
+    text-align: center;
+}
+h1{
+    color: white;
+}
+</style>
+</head>
+<body>
+<audio autoplay id="myaudio" loop>
+  <source src="danc.mp3">
+</audio>
+<div>
+    <h1 style="padding-top: 15%;">Please Enter The Passcode.</h1>
+    <input type="text" id="passInput" placeholder="Passcode">
+    <button onclick="checkPassword()">Submit</button>
+
+    <script>
+        function checkPassword() {
+            // Get the value from the input field
+            const userInput = document.getElementById("passInput").value;
+            
+            // Check if the input exactly matches the word "password"
+            if (userInput === "analwithleslie") {
+                // Redirect to the new page
+                window.location.href = "success.html";
+            } else {
+                alert("Invaild Passcode");
+            }
+        }
+    </script>
+</div>
+</body>

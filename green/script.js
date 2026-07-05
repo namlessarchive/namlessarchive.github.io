@@ -118,7 +118,7 @@ if (filesMode) {
 
     switch(cmd) {
       case 'help':
-        return "help - shows commands for archive mode\ntest - opens the test file\nreturn - exits archive mode\n\nTo search for files, simply type the name as a command."
+        return "help - shows commands for archive mode\ntest - opens the test file\nreturn - exits archive mode\n\nTo search for files, simply type the name as a command.\n-Popular File Commands-\ndemonweb\ntest\ncarunpc"
 
 
       case 'return':
@@ -127,6 +127,18 @@ if (filesMode) {
 
       case 'test':
         return "File Located\nTEST.TXT - CONTENTS BELOW\n[This is a test file for users to verify the working order of the terminal.]"
+
+      case 'passcode':
+        return "Passcode file not found. Are you trying to get to the bookshop? Perhaps you should take care of your case first, agent."
+
+      case 'demonweb':
+        window.open('https://demonweb101.com', '_blank')
+        return "File Located\nOpening demonweb101.com"
+
+      case 'carunpc':
+        window.open('carunpc', '_blank')
+        return "File Located\nOpening Roger Carun's PC"
+
 
       default:
         return "ERROR: Could not find file under that name."
@@ -166,14 +178,14 @@ if (filesMode) {
     case 'door':
       return"ERROR: This command can only be used in LOCKDOWN MODE."
 
-    case 'info.john':
-      return"AGENT:JOHN DOE\nAge: XX, Role: Agent, Cover: FBI\n\nThis is a test bio for selected agent."
+    case 'passcode':
+      return"ERROR: Unknown command, try archive mode?"
 
     case 'lockdown':
-      return"Not that simple. What happens when you [modify] your keys?"
+      return"Not that simple. What happens when you [MODIFY] your keys?"
     
     case 'help':
-      return "help - show commands\nclear - clear screen\ntest - system test\nonboard - open onboarding\nintro - plays current intro sequence\ninfo.<agent> - displays dossier for inputed agent.\nEX: info.john\nfiles - enables archive mode, use to nagivate.\nhint - ???"
+      return "help - show commands\nclear - clear screen\ntest - system test\nonboard - open onboarding\nintro - plays current intro sequence\nfiles - enables archive mode, use to nagivate.\nhint - ???"
 
 
     default:
